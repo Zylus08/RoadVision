@@ -1,0 +1,25 @@
+{
+  "image": "data/samples/authentic/frankfurt_000000_000294.png",
+  "architecture": "segformer",
+  "model": "nvidia/segformer-b0-finetuned-cityscapes-1024-1024",
+  "device": "cpu",
+  "resolution": [
+    1024,
+    2048
+  ],
+  "latency_ms": 913.28,
+  "throughput_fps": 1.1,
+  "class_proportions": {
+    "road": 38.2,
+    "sidewalk": 8.29,
+    "building": 40.79,
+    "fence": 0.32,
+    "pole": 2.21,
+    "traffic sign": 0.3,
+    "vegetation": 2.09,
+    "terrain": 0.1,
+    "sky": 1.96,
+    "person": 0.22,
+    "car": 5.52
+  }
+}

@@ -1,0 +1,391 @@
+{
+  "dataset_source": "Cityscapes Validation Set (official Frankfurt sequence)",
+  "download_repository": "https://huggingface.co/datasets/tackhwa/cityscapes",
+  "checkpoint_identifier": "nvidia/segformer-b0-finetuned-cityscapes-1024-1024",
+  "checkpoint_architecture": "segformer",
+  "label_taxonomy": {
+    "0": "road",
+    "1": "sidewalk",
+    "2": "building",
+    "3": "wall",
+    "4": "fence",
+    "5": "pole",
+    "6": "traffic light",
+    "7": "traffic sign",
+    "8": "vegetation",
+    "9": "terrain",
+    "10": "sky",
+    "11": "person",
+    "12": "rider",
+    "13": "car",
+    "14": "truck",
+    "15": "bus",
+    "16": "train",
+    "17": "motorcycle",
+    "18": "bicycle"
+  },
+  "scenes": [
+    {
+      "scene_stem": "frankfurt_000000_000294",
+      "image_file": "frankfurt_000000_000294.png",
+      "label_file": "frankfurt_000000_000294_label.png",
+      "image_sha256": "3957f8cbb5f5ca483df2c4d39ba0bd581368225d160ab013166f54596cea6ade",
+      "label_sha256": "a764591ffe0ab3c20cc7396cf214285dc1c6fe94389222ab138e6f8b8254f899",
+      "resolution": [
+        1024,
+        2048
+      ],
+      "total_pixels": 2097152,
+      "valid_pixels": 1854410,
+      "void_pixels": 242742,
+      "void_pixel_percentage": 11.57,
+      "distinct_classes_count": 10,
+      "class_distribution": {
+        "0_road": {
+          "pixels": 624649,
+          "percentage": 29.786
+        },
+        "1_sidewalk": {
+          "pixels": 168701,
+          "percentage": 8.044
+        },
+        "2_building": {
+          "pixels": 819939,
+          "percentage": 39.098
+        },
+        "4_fence": {
+          "pixels": 2802,
+          "percentage": 0.134
+        },
+        "5_pole": {
+          "pixels": 24885,
+          "percentage": 1.187
+        },
+        "7_traffic sign": {
+          "pixels": 12193,
+          "percentage": 0.581
+        },
+        "8_vegetation": {
+          "pixels": 42082,
+          "percentage": 2.007
+        },
+        "10_sky": {
+          "pixels": 37098,
+          "percentage": 1.769
+        },
+        "11_person": {
+          "pixels": 6791,
+          "percentage": 0.324
+        },
+        "13_car": {
+          "pixels": 115270,
+          "percentage": 5.497
+        },
+        "void_255": {
+          "pixels": 242742,
+          "percentage": 11.575
+        }
+      },
+      "semantic_geometry_checks": {
+        "road_pixels_in_lower_third_ratio": 0.628,
+        "sky_pixels_in_upper_third_ratio": 1.0
+      }
+    },
+    {
+      "scene_stem": "frankfurt_000000_000576",
+      "image_file": "frankfurt_000000_000576.png",
+      "label_file": "frankfurt_000000_000576_label.png",
+      "image_sha256": "665ed5e09a0b8708b7aa01897194b4fe7a59fc299298a4f0b06a52634edbde10",
+      "label_sha256": "8b4f30a7b4db5fb8eb924ede0ebe8c5353400e30e83e80caf668ffea896ce5dc",
+      "resolution": [
+        1024,
+        2048
+      ],
+      "total_pixels": 2097152,
+      "valid_pixels": 1864939,
+      "void_pixels": 232213,
+      "void_pixel_percentage": 11.07,
+      "distinct_classes_count": 11,
+      "class_distribution": {
+        "0_road": {
+          "pixels": 724668,
+          "percentage": 34.555
+        },
+        "1_sidewalk": {
+          "pixels": 40092,
+          "percentage": 1.912
+        },
+        "2_building": {
+          "pixels": 538918,
+          "percentage": 25.698
+        },
+        "4_fence": {
+          "pixels": 14728,
+          "percentage": 0.702
+        },
+        "5_pole": {
+          "pixels": 11170,
+          "percentage": 0.533
+        },
+        "7_traffic sign": {
+          "pixels": 3737,
+          "percentage": 0.178
+        },
+        "8_vegetation": {
+          "pixels": 178642,
+          "percentage": 8.518
+        },
+        "10_sky": {
+          "pixels": 31344,
+          "percentage": 1.495
+        },
+        "12_rider": {
+          "pixels": 4682,
+          "percentage": 0.223
+        },
+        "13_car": {
+          "pixels": 315628,
+          "percentage": 15.05
+        },
+        "18_bicycle": {
+          "pixels": 1330,
+          "percentage": 0.063
+        },
+        "void_255": {
+          "pixels": 232213,
+          "percentage": 11.073
+        }
+      },
+      "semantic_geometry_checks": {
+        "road_pixels_in_lower_third_ratio": 0.637,
+        "sky_pixels_in_upper_third_ratio": 1.0
+      }
+    },
+    {
+      "scene_stem": "frankfurt_000000_001016",
+      "image_file": "frankfurt_000000_001016.png",
+      "label_file": "frankfurt_000000_001016_label.png",
+      "image_sha256": "3d8d053391a10cbf49f35b3c731bf4afb025b9d6771191af6c5aaa0e0b57a283",
+      "label_sha256": "d8422ed8e338a61fdef02f8a0be3b5417fef0de9b6e2cd0332b90d0e9c45d46c",
+      "resolution": [
+        1024,
+        2048
+      ],
+      "total_pixels": 2097152,
+      "valid_pixels": 1868396,
+      "void_pixels": 228756,
+      "void_pixel_percentage": 10.91,
+      "distinct_classes_count": 10,
+      "class_distribution": {
+        "0_road": {
+          "pixels": 705215,
+          "percentage": 33.627
+        },
+        "1_sidewalk": {
+          "pixels": 48875,
+          "percentage": 2.331
+        },
+        "2_building": {
+          "pixels": 765063,
+          "percentage": 36.481
+        },
+        "5_pole": {
+          "pixels": 10081,
+          "percentage": 0.481
+        },
+        "7_traffic sign": {
+          "pixels": 10234,
+          "percentage": 0.488
+        },
+        "8_vegetation": {
+          "pixels": 24566,
+          "percentage": 1.171
+        },
+        "11_person": {
+          "pixels": 19491,
+          "percentage": 0.929
+        },
+        "12_rider": {
+          "pixels": 20156,
+          "percentage": 0.961
+        },
+        "13_car": {
+          "pixels": 259215,
+          "percentage": 12.36
+        },
+        "18_bicycle": {
+          "pixels": 5500,
+          "percentage": 0.262
+        },
+        "void_255": {
+          "pixels": 228756,
+          "percentage": 10.908
+        }
+      },
+      "semantic_geometry_checks": {
+        "road_pixels_in_lower_third_ratio": 0.628,
+        "sky_pixels_in_upper_third_ratio": 0.0
+      }
+    },
+    {
+      "scene_stem": "frankfurt_000000_001236",
+      "image_file": "frankfurt_000000_001236.png",
+      "label_file": "frankfurt_000000_001236_label.png",
+      "image_sha256": "8fa51522e8b5efc5cc575dc29a2a71a9d87ebf873df4d6279c2c25f97a4d2892",
+      "label_sha256": "f1416e3ab7d765e60298aa2100cb266f699f8e17a70947cef230853dd0fc46a2",
+      "resolution": [
+        1024,
+        2048
+      ],
+      "total_pixels": 2097152,
+      "valid_pixels": 1846549,
+      "void_pixels": 250603,
+      "void_pixel_percentage": 11.95,
+      "distinct_classes_count": 14,
+      "class_distribution": {
+        "0_road": {
+          "pixels": 800122,
+          "percentage": 38.153
+        },
+        "1_sidewalk": {
+          "pixels": 20378,
+          "percentage": 0.972
+        },
+        "2_building": {
+          "pixels": 66731,
+          "percentage": 3.182
+        },
+        "4_fence": {
+          "pixels": 14804,
+          "percentage": 0.706
+        },
+        "5_pole": {
+          "pixels": 14680,
+          "percentage": 0.7
+        },
+        "6_traffic light": {
+          "pixels": 8746,
+          "percentage": 0.417
+        },
+        "7_traffic sign": {
+          "pixels": 6493,
+          "percentage": 0.31
+        },
+        "8_vegetation": {
+          "pixels": 538495,
+          "percentage": 25.677
+        },
+        "9_terrain": {
+          "pixels": 786,
+          "percentage": 0.037
+        },
+        "10_sky": {
+          "pixels": 72169,
+          "percentage": 3.441
+        },
+        "11_person": {
+          "pixels": 13629,
+          "percentage": 0.65
+        },
+        "12_rider": {
+          "pixels": 390,
+          "percentage": 0.019
+        },
+        "13_car": {
+          "pixels": 288733,
+          "percentage": 13.768
+        },
+        "18_bicycle": {
+          "pixels": 393,
+          "percentage": 0.019
+        },
+        "void_255": {
+          "pixels": 250603,
+          "percentage": 11.95
+        }
+      },
+      "semantic_geometry_checks": {
+        "road_pixels_in_lower_third_ratio": 0.579,
+        "sky_pixels_in_upper_third_ratio": 1.0
+      }
+    },
+    {
+      "scene_stem": "frankfurt_000000_001751",
+      "image_file": "frankfurt_000000_001751.png",
+      "label_file": "frankfurt_000000_001751_label.png",
+      "image_sha256": "d4cca1849714173c37bb6a5dd3165b5e20e66d70f015d8997f12aedbbf3f3a6b",
+      "label_sha256": "2dc4bc4ea445b9d48126762756b1a398b2f69807a9228d3945f7759132603676",
+      "resolution": [
+        1024,
+        2048
+      ],
+      "total_pixels": 2097152,
+      "valid_pixels": 1683242,
+      "void_pixels": 413910,
+      "void_pixel_percentage": 19.74,
+      "distinct_classes_count": 13,
+      "class_distribution": {
+        "0_road": {
+          "pixels": 796696,
+          "percentage": 37.989
+        },
+        "1_sidewalk": {
+          "pixels": 50281,
+          "percentage": 2.398
+        },
+        "2_building": {
+          "pixels": 406430,
+          "percentage": 19.38
+        },
+        "5_pole": {
+          "pixels": 13121,
+          "percentage": 0.626
+        },
+        "6_traffic light": {
+          "pixels": 232,
+          "percentage": 0.011
+        },
+        "7_traffic sign": {
+          "pixels": 8147,
+          "percentage": 0.388
+        },
+        "8_vegetation": {
+          "pixels": 110298,
+          "percentage": 5.259
+        },
+        "10_sky": {
+          "pixels": 101042,
+          "percentage": 4.818
+        },
+        "11_person": {
+          "pixels": 2210,
+          "percentage": 0.105
+        },
+        "12_rider": {
+          "pixels": 3540,
+          "percentage": 0.169
+        },
+        "13_car": {
+          "pixels": 187254,
+          "percentage": 8.929
+        },
+        "14_truck": {
+          "pixels": 1573,
+          "percentage": 0.075
+        },
+        "18_bicycle": {
+          "pixels": 2418,
+          "percentage": 0.115
+        },
+        "void_255": {
+          "pixels": 413910,
+          "percentage": 19.737
+        }
+      },
+      "semantic_geometry_checks": {
+        "road_pixels_in_lower_third_ratio": 0.593,
+        "sky_pixels_in_upper_third_ratio": 0.999
+      }
+    }
+  ]
+}

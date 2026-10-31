@@ -1,0 +1,28 @@
+{
+  "mIoU": 0.389825354349969,
+  "pixel_accuracy": 0.9447475721510724,
+  "per_class_iou": {
+    "road": 0.966793606660823,
+    "sidewalk": 0.7089591830433208,
+    "building": 0.9099104157721088,
+    "wall": 0.0,
+    "fence": 0.10788534591918959,
+    "pole": 0.1318378952057756,
+    "traffic light": 0.26357039187227865,
+    "traffic sign": 0.4075659467211334,
+    "vegetation": 0.8995835881796017,
+    "terrain": 0.0,
+    "sky": 0.9573021131986715,
+    "person": 0.2966702954315102,
+    "rider": 0.10898156103363955,
+    "car": 0.9039994946574603,
+    "truck": 0.0,
+    "bus": 0.0,
+    "train": 0.0,
+    "motorcycle": NaN,
+    "bicycle": 0.35379654060392846
+  },
+  "evaluated_classes_count": 18,
+  "total_pixels_evaluated": 9117536,
+  "total_samples": 5
+}

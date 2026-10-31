@@ -1,0 +1,28 @@
+{
+  "image": "data\\samples\\road_scene_001.png",
+  "architecture": "segformer",
+  "model": "nvidia/segformer-b0-finetuned-cityscapes-1024-1024",
+  "device": "cpu",
+  "resolution": [
+    1024,
+    2048
+  ],
+  "latency_ms": 771.32,
+  "throughput_fps": 1.3,
+  "class_proportions": {
+    "road": 43.15,
+    "sidewalk": 3.61,
+    "building": 3.23,
+    "fence": 0.09,
+    "pole": 0.81,
+    "traffic light": 0.0,
+    "traffic sign": 1.39,
+    "vegetation": 34.37,
+    "terrain": 0.22,
+    "sky": 3.78,
+    "person": 0.35,
+    "car": 5.87,
+    "bus": 2.1,
+    "bicycle": 1.03
+  }
+}

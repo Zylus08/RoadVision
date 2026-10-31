@@ -1,0 +1,14 @@
+{
+  "total_frames_read": 40,
+  "frames_inferred": 20,
+  "frames_skipped": 20,
+  "model_latency_mean_ms": 318.64,
+  "end_to_end_latency_mean_ms": 161.07,
+  "overall_fps": 6.0,
+  "output_path": "outputs/predictions\\sample_dashcam_segmented.mp4",
+  "resolution": [
+    640,
+    360
+  ],
+  "total_processing_time_s": 6.66
+}

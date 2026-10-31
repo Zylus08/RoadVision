@@ -1,0 +1,216 @@
+{
+  "source_files_immutable": true,
+  "unrounded_precision_verified": true,
+  "corruption_analysis": {
+    "low_light": [
+      {
+        "severity": 1,
+        "mIoU": 0.3893879946492756,
+        "pixel_accuracy": 0.9454267030039695,
+        "absolute_drop": 0.00043735970069341823,
+        "relative_drop_pct": 0.11219375441156525,
+        "step_delta": 0.00043735970069341823
+      },
+      {
+        "severity": 2,
+        "mIoU": 0.3884194360996624,
+        "pixel_accuracy": 0.9419028342745233,
+        "absolute_drop": 0.0014059182503066148,
+        "relative_drop_pct": 0.3606533630043057,
+        "step_delta": 0.0009685585496131965
+      },
+      {
+        "severity": 3,
+        "mIoU": 0.37800797256516355,
+        "pixel_accuracy": 0.933162863299909,
+        "absolute_drop": 0.011817381784805459,
+        "relative_drop_pct": 3.031455407642958,
+        "step_delta": 0.010411463534498844
+      },
+      {
+        "severity": 4,
+        "mIoU": 0.3967759631809755,
+        "pixel_accuracy": 0.90071593904318,
+        "absolute_drop": -0.006950608831006511,
+        "relative_drop_pct": -1.7830058392678438,
+        "step_delta": -0.01876799061581197
+      },
+      {
+        "severity": 5,
+        "mIoU": 0.29229170469524535,
+        "pixel_accuracy": 0.8552299656398396,
+        "absolute_drop": 0.09753364965472366,
+        "relative_drop_pct": 25.01983223163109,
+        "step_delta": 0.10448425848573017
+      }
+    ],
+    "fog": [
+      {
+        "severity": 1,
+        "mIoU": 0.3735584235380689,
+        "pixel_accuracy": 0.9387800607532562,
+        "absolute_drop": 0.016266930811900115,
+        "relative_drop_pct": 4.172876553662115,
+        "step_delta": 0.016266930811900115
+      },
+      {
+        "severity": 2,
+        "mIoU": 0.35987565700040963,
+        "pixel_accuracy": 0.9286401501458289,
+        "absolute_drop": 0.02994969734955938,
+        "relative_drop_pct": 7.6828500289572705,
+        "step_delta": 0.013682766537659263
+      },
+      {
+        "severity": 3,
+        "mIoU": 0.35126175431355044,
+        "pixel_accuracy": 0.9035305152620181,
+        "absolute_drop": 0.038563600036418566,
+        "relative_drop_pct": 9.892532542097754,
+        "step_delta": 0.008613902686859187
+      },
+      {
+        "severity": 4,
+        "mIoU": 0.2827826555256396,
+        "pixel_accuracy": 0.8390634267854824,
+        "absolute_drop": 0.10704269882432943,
+        "relative_drop_pct": 27.459142313311652,
+        "step_delta": 0.06847909878791086
+      },
+      {
+        "severity": 5,
+        "mIoU": 0.17157199748740576,
+        "pixel_accuracy": 0.750287138981409,
+        "absolute_drop": 0.21825335686256325,
+        "relative_drop_pct": 55.987470908991845,
+        "step_delta": 0.11121065803823382
+      }
+    ],
+    "rain": [
+      {
+        "severity": 1,
+        "mIoU": 0.39115116614169915,
+        "pixel_accuracy": 0.9453909477297375,
+        "absolute_drop": -0.001325811791730136,
+        "relative_drop_pct": -0.34010404324288185,
+        "step_delta": -0.001325811791730136
+      },
+      {
+        "severity": 2,
+        "mIoU": 0.41273293302288405,
+        "pixel_accuracy": 0.9450301046247582,
+        "absolute_drop": -0.02290757867291504,
+        "relative_drop_pct": -5.876369614570931,
+        "step_delta": -0.021581766881184905
+      },
+      {
+        "severity": 3,
+        "mIoU": 0.3897178080097296,
+        "pixel_accuracy": 0.9447468043997852,
+        "absolute_drop": 0.00010754634023940612,
+        "relative_drop_pct": 0.027588338993172694,
+        "step_delta": 0.023015125013154447
+      },
+      {
+        "severity": 4,
+        "mIoU": 0.36817065924902986,
+        "pixel_accuracy": 0.9456191892195436,
+        "absolute_drop": 0.021654695100939148,
+        "relative_drop_pct": 5.554973492436939,
+        "step_delta": 0.02154714876069974
+      },
+      {
+        "severity": 5,
+        "mIoU": 0.3672192890617093,
+        "pixel_accuracy": 0.9462996362175043,
+        "absolute_drop": 0.022606065288259702,
+        "relative_drop_pct": 5.799023854144929,
+        "step_delta": 0.0009513701873205549
+      }
+    ],
+    "gaussian_blur": [
+      {
+        "severity": 1,
+        "mIoU": 0.41041848723214913,
+        "pixel_accuracy": 0.9428186518813855,
+        "absolute_drop": -0.02059313288218012,
+        "relative_drop_pct": -5.282656105454973,
+        "step_delta": -0.02059313288218012
+      },
+      {
+        "severity": 2,
+        "mIoU": 0.42208980194129087,
+        "pixel_accuracy": 0.9339830410321385,
+        "absolute_drop": -0.032264447591321854,
+        "relative_drop_pct": -8.276641637412885,
+        "step_delta": -0.011671314709141734
+      },
+      {
+        "severity": 3,
+        "mIoU": 0.3931014187780815,
+        "pixel_accuracy": 0.9135188498296031,
+        "absolute_drop": -0.003276064428112513,
+        "relative_drop_pct": -0.8403928558149653,
+        "step_delta": 0.02898838316320934
+      },
+      {
+        "severity": 4,
+        "mIoU": 0.3802419273717266,
+        "pixel_accuracy": 0.9006662545670233,
+        "absolute_drop": 0.009583426978242437,
+        "relative_drop_pct": 2.458389858767071,
+        "step_delta": 0.01285949140635495
+      },
+      {
+        "severity": 5,
+        "mIoU": 0.2922970429265735,
+        "pixel_accuracy": 0.8626450172502746,
+        "absolute_drop": 0.09752831142339552,
+        "relative_drop_pct": 25.018462841141588,
+        "step_delta": 0.08794488444515308
+      }
+    ],
+    "gaussian_noise": [
+      {
+        "severity": 1,
+        "mIoU": 0.38712101898809265,
+        "pixel_accuracy": 0.9404868815434345,
+        "absolute_drop": 0.0027043353618763644,
+        "relative_drop_pct": 0.6937299823367887,
+        "step_delta": 0.0027043353618763644
+      },
+      {
+        "severity": 2,
+        "mIoU": 0.36687769741906173,
+        "pixel_accuracy": 0.9224940817343633,
+        "absolute_drop": 0.02294765693090728,
+        "relative_drop_pct": 5.886650694943209,
+        "step_delta": 0.020243321569030914
+      },
+      {
+        "severity": 3,
+        "mIoU": 0.34865386713830016,
+        "pixel_accuracy": 0.912937552426445,
+        "absolute_drop": 0.041171487211668856,
+        "relative_drop_pct": 10.561521140748276,
+        "step_delta": 0.018223830280761577
+      },
+      {
+        "severity": 4,
+        "mIoU": 0.34563439223906206,
+        "pixel_accuracy": 0.901050020531863,
+        "absolute_drop": 0.04419096211090695,
+        "relative_drop_pct": 11.336092334115893,
+        "step_delta": 0.003019474899238095
+      },
+      {
+        "severity": 5,
+        "mIoU": 0.31502754119369114,
+        "pixel_accuracy": 0.8798991306423138,
+        "absolute_drop": 0.07479781315627787,
+        "relative_drop_pct": 19.18751880082369,
+        "step_delta": 0.03060685104537092
+      }
+    ]
+  }
+}
