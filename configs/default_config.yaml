@@ -5,8 +5,8 @@ model:
   architecture: "segformer"
   device: "auto" # 'auto', 'cuda', or 'cpu'
   input_size: [1024, 1024] # [H, W] or native
-  cache_dir: "E:/RoadVision/.cache/huggingface"
-  torch_cache_dir: "E:/RoadVision/.cache/torch"
+  cache_dir: "~/.cache/huggingface"
+  torch_cache_dir: "~/.cache/torch"
 
 # Cityscapes 19 official evaluation classes
 classes:
@@ -61,6 +61,46 @@ corruptions:
     - "gaussian_noise"
   severities: [1, 2, 3, 4, 5]
 
+  # Low light corruption parameters (alpha, gamma per severity)
+  low_light:
+    1: {alpha: 0.80, gamma: 1.25}
+    2: {alpha: 0.60, gamma: 1.50}
+    3: {alpha: 0.45, gamma: 1.85}
+    4: {alpha: 0.30, gamma: 2.20}
+    5: {alpha: 0.15, gamma: 2.70}
+
+  # Fog corruption parameters (beta and airlight per severity)
+  fog:
+    1: {beta: 0.8, airlight: 220.0}
+    2: {beta: 1.4, airlight: 220.0}
+    3: {beta: 2.0, airlight: 220.0}
+    4: {beta: 2.8, airlight: 220.0}
+    5: {beta: 3.8, airlight: 220.0}
+
+  # Rain corruption parameters per severity
+  rain:
+    1: {drops: 600, length: 15, angle: -30, blur: 3, darken: 0.95}
+    2: {drops: 1400, length: 22, angle: -32, blur: 3, darken: 0.90}
+    3: {drops: 2600, length: 30, angle: -35, blur: 5, darken: 0.82}
+    4: {drops: 4500, length: 40, angle: -38, blur: 5, darken: 0.72}
+    5: {drops: 7500, length: 50, angle: -40, blur: 7, darken: 0.60}
+
+  # Gaussian blur parameters per severity
+  gaussian_blur:
+    1: {ksize: 5, sigma: 1.2}
+    2: {ksize: 9, sigma: 2.2}
+    3: {ksize: 15, sigma: 3.8}
+    4: {ksize: 21, sigma: 5.5}
+    5: {ksize: 31, sigma: 8.0}
+
+  # Gaussian noise parameters per severity
+  gaussian_noise:
+    1: {sigma: 8.0}
+    2: {sigma: 18.0}
+    3: {sigma: 32.0}
+    4: {sigma: 50.0}
+    5: {sigma: 75.0}
+
 evaluation:
   ignore_index: 255
   data_dir: "data/samples"
@@ -72,3 +112,16 @@ video:
   frame_skip: 1
   overlay_alpha: 0.5
   output_fps: 20.0
+
+# Display settings
+display:
+  max_width: 1200
+  max_height: 800
+
+# Resource limits to prevent DoS
+resources:
+  max_image_dimension: 4096
+  max_image_pixels: 8000000
+  max_video_duration_seconds: 60
+  max_video_file_size_mb: 500
+  max_image_file_size_mb: 100

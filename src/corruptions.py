@@ -13,108 +13,105 @@ All corruptions support severity levels 1 through 5 and deterministic random see
 import numpy as np
 import cv2
 
+from src.config import get_corruption_config
+
 def set_seed(seed: int = 42):
     """Set numpy random seed for deterministic corruptions."""
     np.random.seed(seed)
 
 def corrupt_low_light(image: np.ndarray, severity: int = 1, seed: int = None) -> np.ndarray:
     """Simulate low-light / nighttime illumination conditions.
-    
+
     Transformation:
         I' = alpha * (I / 255.0) ^ gamma * 255.0
     where alpha controls overall attenuation and gamma controls non-linear shadow compression.
-    
+
     Args:
         image: RGB uint8 array (H, W, 3).
         severity: Level 1 (dusk) to 5 (pitch dark road).
         seed: Random seed (unused for purely deterministic function, kept for uniform API).
-        
+
     Returns:
         Corrupted RGB image uint8 (H, W, 3).
     """
     severity = max(1, min(5, severity))
-    params = {
-        1: {"alpha": 0.80, "gamma": 1.25},
-        2: {"alpha": 0.60, "gamma": 1.50},
-        3: {"alpha": 0.45, "gamma": 1.85},
-        4: {"alpha": 0.30, "gamma": 2.20},
-        5: {"alpha": 0.15, "gamma": 2.70},
-    }[severity]
-    
+    corruption_config = get_corruption_config()
+    low_light_config = corruption_config.get("low_light", {})
+    params = low_light_config.get(severity, {"alpha": 0.50, "gamma": 2.0})
+
     img_float = image.astype(np.float32) / 255.0
     corrupted = params["alpha"] * np.power(img_float, params["gamma"]) * 255.0
     return np.clip(corrupted, 0, 255).astype(np.uint8)
 
 def corrupt_fog(image: np.ndarray, severity: int = 1, seed: int = None) -> np.ndarray:
     """Simulate atmospheric fog using Koschmieder's atmospheric scattering model.
-    
+
     Formulation:
         I_fog(x) = I(x) * t(x) + L * (1 - t(x))
     where:
         t(x) = exp(-beta * d(x)) is the atmospheric transmission,
         d(x) is the approximated road depth map (deeper at top/horizon),
         L is the atmospheric airlight vector (~0.85).
-        
+
     Args:
         image: RGB uint8 array (H, W, 3).
         severity: Level 1 (light haze) to 5 (dense fog).
         seed: Random seed.
-        
+
     Returns:
         Corrupted RGB image uint8 (H, W, 3).
     """
     severity = max(1, min(5, severity))
-    beta_map = {1: 0.8, 2: 1.4, 3: 2.0, 4: 2.8, 5: 3.8}
-    beta = beta_map[severity]
-    
+    corruption_config = get_corruption_config()
+    fog_config = corruption_config.get("fog", {})
+    beta = fog_config.get(severity, {}).get("beta", 2.0)
+    airlight = fog_config.get(severity, {}).get("airlight", 220.0)
+
     H, W, _ = image.shape
     # Approximate depth gradient: top (horizon) is farther (d ~ 1.0), bottom (hood) is close (d ~ 0.1)
     y_coords = np.linspace(1.0, 0.15, H).reshape(H, 1)
     depth_map = np.repeat(y_coords, W, axis=1)[:, :, np.newaxis]
-    
+
     # Atmospheric transmission
     transmission = np.exp(-beta * depth_map)
-    airlight = 220.0 # Whitish-gray atmospheric light
-    
+
     img_float = image.astype(np.float32)
     foggy = img_float * transmission + airlight * (1.0 - transmission)
     return np.clip(foggy, 0, 255).astype(np.uint8)
 
 def corrupt_rain(image: np.ndarray, severity: int = 1, seed: int = None) -> np.ndarray:
     """Simulate synthetic rain streaks and road water film contrast attenuation.
-    
+
     Args:
         image: RGB uint8 array (H, W, 3).
         severity: Level 1 (light drizzle) to 5 (torrential downpour).
         seed: Random seed for deterministic streak pattern.
-        
+
     Returns:
         Corrupted RGB image uint8 (H, W, 3).
     """
-    if seed is not None:
-        np.random.seed(seed)
-        
+    # Use Generator for thread-safe random operations
+    rng = np.random.default_rng(seed)
+
     severity = max(1, min(5, severity))
-    configs = {
-        1: {"drops": 600, "length": 15, "angle": -30, "blur": 3, "darken": 0.95},
-        2: {"drops": 1400, "length": 22, "angle": -32, "blur": 3, "darken": 0.90},
-        3: {"drops": 2600, "length": 30, "angle": -35, "blur": 5, "darken": 0.82},
-        4: {"drops": 4500, "length": 40, "angle": -38, "blur": 5, "darken": 0.72},
-        5: {"drops": 7500, "length": 50, "angle": -40, "blur": 7, "darken": 0.60},
-    }[severity]
-    
+    corruption_config = get_corruption_config()
+    rain_config = corruption_config.get("rain", {})
+    configs = rain_config.get(severity, {
+        "drops": 2600, "length": 30, "angle": -35, "blur": 5, "darken": 0.82
+    })
+
     H, W, C = image.shape
     streak_mask = np.zeros((H, W), dtype=np.float32)
-    
+
     # Generate random streak centers
     num_drops = configs["drops"]
-    x = np.random.randint(0, W, num_drops)
-    y = np.random.randint(0, H, num_drops)
-    intensity = np.random.uniform(150, 255, num_drops)
-    
-    for xi, yi, val in zip(x, y, intensity):
-        streak_mask[yi, xi] = val
-        
+    x = rng.integers(0, W, num_drops)
+    y = rng.integers(0, H, num_drops)
+    intensity = rng.uniform(150, 255, num_drops)
+
+    # Vectorized scatter using np.add.at (handles duplicates correctly)
+    np.add.at(streak_mask, (y, x), intensity)
+
     # Create directional motion blur kernel for rain streak elongation
     length = configs["length"]
     angle = configs["angle"]
@@ -127,10 +124,10 @@ def corrupt_rain(image: np.ndarray, severity: int = 1, seed: int = None) -> np.n
     kernel_sum = np.sum(kernel)
     if kernel_sum > 0:
         kernel /= kernel_sum
-        
+
     streak_mask = cv2.filter2D(streak_mask, -1, kernel)
     streak_mask = cv2.GaussianBlur(streak_mask, (configs["blur"], configs["blur"]), 0)
-    
+
     # Blend streaks with original image and attenuate contrast
     darkened = image.astype(np.float32) * configs["darken"]
     rainy = darkened + streak_mask[:, :, np.newaxis] * 0.7
@@ -138,24 +135,20 @@ def corrupt_rain(image: np.ndarray, severity: int = 1, seed: int = None) -> np.n
 
 def corrupt_gaussian_blur(image: np.ndarray, severity: int = 1, seed: int = None) -> np.ndarray:
     """Simulate optical defocus, dirty sensor lens, or high-speed motion blur.
-    
+
     Args:
         image: RGB uint8 array (H, W, 3).
         severity: Level 1 (mild blur) to 5 (heavy blur).
         seed: Random seed.
-        
+
     Returns:
         Corrupted RGB image uint8 (H, W, 3).
     """
     severity = max(1, min(5, severity))
-    params = {
-        1: {"ksize": 5, "sigma": 1.2},
-        2: {"ksize": 9, "sigma": 2.2},
-        3: {"ksize": 15, "sigma": 3.8},
-        4: {"ksize": 21, "sigma": 5.5},
-        5: {"ksize": 31, "sigma": 8.0},
-    }[severity]
-    
+    corruption_config = get_corruption_config()
+    blur_config = corruption_config.get("gaussian_blur", {})
+    params = blur_config.get(severity, {"ksize": 15, "sigma": 3.8})
+
     ksize = params["ksize"]
     sigma = params["sigma"]
     blurred = cv2.GaussianBlur(image, (ksize, ksize), sigmaX=sigma, sigmaY=sigma)
@@ -163,23 +156,24 @@ def corrupt_gaussian_blur(image: np.ndarray, severity: int = 1, seed: int = None
 
 def corrupt_gaussian_noise(image: np.ndarray, severity: int = 1, seed: int = None) -> np.ndarray:
     """Simulate camera sensor electronic shot noise and ISO gain artifacts.
-    
+
     Args:
         image: RGB uint8 array (H, W, 3).
         severity: Level 1 (subtle grain) to 5 (severe noise).
         seed: Random seed.
-        
+
     Returns:
         Corrupted RGB image uint8 (H, W, 3).
     """
-    if seed is not None:
-        np.random.seed(seed)
-        
+    # Use Generator for thread-safe random operations
+    rng = np.random.default_rng(seed)
+
     severity = max(1, min(5, severity))
-    sigma_map = {1: 8.0, 2: 18.0, 3: 32.0, 4: 50.0, 5: 75.0}
-    sigma = sigma_map[severity]
-    
-    noise = np.random.normal(0, sigma, image.shape).astype(np.float32)
+    corruption_config = get_corruption_config()
+    noise_config = corruption_config.get("gaussian_noise", {})
+    sigma = noise_config.get(severity, {}).get("sigma", 32.0)
+
+    noise = rng.normal(0, sigma, image.shape).astype(np.float32)
     noisy = image.astype(np.float32) + noise
     return np.clip(noisy, 0, 255).astype(np.uint8)
 

@@ -48,8 +48,9 @@ def main():
         
     segmentor = RoadVisionSegmentor(model_name=args.model, architecture=args.architecture)
     evaluator = SegmentationEvaluator(num_classes=19, ignore_index=255, class_names=CITYSCAPES_CLASSES)
-    
+
     latencies = []
+    has_ground_truth = False
     
     print(f"Evaluating {total_samples} samples...")
     for idx in range(total_samples):
@@ -69,9 +70,10 @@ def main():
                 import cv2
                 gt_mask = cv2.resize(gt_mask, (pred_mask.shape[1], pred_mask.shape[0]), interpolation=cv2.INTER_NEAREST)
             evaluator.update(pred=pred_mask, target=gt_mask)
+            has_ground_truth = True
         else:
-            # Self-reference consistency check
-            evaluator.update(pred=pred_mask, target=pred_mask)
+            # No ground truth available - skip evaluation (self-reference gives 100% mIoU by definition)
+            has_ground_truth = False
             
         print(f"[{idx+1}/{total_samples}] {name} - Latency: {res['latency_ms']:.1f}ms")
         
@@ -82,10 +84,14 @@ def main():
     metrics["model_evaluated"] = args.model
     metrics["architecture"] = args.architecture
     metrics["num_samples_evaluated"] = total_samples
-    
+    metrics["has_ground_truth"] = has_ground_truth
+
     print("\n--- Evaluation Summary ---")
-    print(f"Mean IoU (mIoU): {metrics['mIoU'] * 100:.2f}%")
-    print(f"Pixel Accuracy: {metrics['pixel_accuracy'] * 100:.2f}%")
+    if has_ground_truth:
+        print(f"Mean IoU (mIoU): {metrics['mIoU'] * 100:.2f}%")
+        print(f"Pixel Accuracy: {metrics['pixel_accuracy'] * 100:.2f}%")
+    else:
+        print("No ground truth available - skipping mIoU and Pixel Accuracy (self-reference would be 100%)")
     print(f"Average Latency: {metrics['latency_mean_ms']} ms ({metrics['throughput_fps']} FPS)")
     
     # Save machine-readable JSON
@@ -94,28 +100,31 @@ def main():
         json.dump(metrics, f, indent=2)
     print(f"Saved evaluation metrics to: {output_json_path}")
     
-    # Plot per-class IoU bar chart
-    per_class = {k: v for k, v in metrics["per_class_iou"].items() if not np.isnan(v)}
-    if per_class:
-        plt.figure(figsize=(12, 6))
-        classes = list(per_class.keys())
-        ious = [per_class[c] * 100.0 for c in classes]
-        
-        bars = plt.bar(classes, ious, color="#3b82f6", edgecolor="#1d4ed8")
-        plt.axhline(metrics["mIoU"] * 100.0, color="#ef4444", linestyle="--", label=f"mIoU: {metrics['mIoU']*100:.1f}%")
-        plt.title(f"Per-Class IoU - {args.architecture.upper()} ({args.model})", fontsize=14, fontweight="bold")
-        plt.xlabel("Semantic Class", fontsize=11)
-        plt.ylabel("Intersection over Union (IoU %)", fontsize=11)
-        plt.xticks(rotation=45, ha="right")
-        plt.ylim(0, 105)
-        plt.grid(axis="y", linestyle=":", alpha=0.6)
-        plt.legend()
-        plt.tight_layout()
-        
-        plot_path = os.path.join(args.plot_dir, "per_class_iou.png")
-        plt.savefig(plot_path, dpi=300)
-        plt.close()
-        print(f"Saved per-class IoU plot to: {plot_path}")
+    # Plot per-class IoU bar chart (only if ground truth available)
+    if has_ground_truth:
+        per_class = {k: v for k, v in metrics["per_class_iou"].items() if not np.isnan(v)}
+        if per_class:
+            plt.figure(figsize=(12, 6))
+            classes = list(per_class.keys())
+            ious = [per_class[c] * 100.0 for c in classes]
+
+            bars = plt.bar(classes, ious, color="#3b82f6", edgecolor="#1d4ed8")
+            plt.axhline(metrics["mIoU"] * 100.0, color="#ef4444", linestyle="--", label=f"mIoU: {metrics['mIoU']*100:.1f}%")
+            plt.title(f"Per-Class IoU - {args.architecture.upper()} ({args.model})", fontsize=14, fontweight="bold")
+            plt.xlabel("Semantic Class", fontsize=11)
+            plt.ylabel("Intersection over Union (IoU %)", fontsize=11)
+            plt.xticks(rotation=45, ha="right")
+            plt.ylim(0, 105)
+            plt.grid(axis="y", linestyle=":", alpha=0.6)
+            plt.legend()
+            plt.tight_layout()
+
+            plot_path = os.path.join(args.plot_dir, "per_class_iou.png")
+            plt.savefig(plot_path, dpi=300)
+            plt.close()
+            print(f"Saved per-class IoU plot to: {plot_path}")
+    else:
+        print("Skipping per-class IoU plot (no ground truth available)")
 
 if __name__ == "__main__":
     main()
