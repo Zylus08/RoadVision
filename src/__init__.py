@@ -2,10 +2,9 @@
 
 __version__ = "1.0.0"
 
-# Public API exports
+# Public API exports — core modules (no optional dependencies)
 from src.config import get_config, get_model_config, get_corruption_config, get_evaluation_config, get_video_config
 from src.inference import RoadVisionSegmentor, PredictionResult
-from src.video_processor import VideoProcessor, processed_video_path
 from src.corruptions import apply_corruption, CORRUPTION_REGISTRY
 from src.visualization import (
     CITYSCAPES_CLASSES,
@@ -27,6 +26,20 @@ from src.constants import (
     get_max_display_width,
     get_max_display_height,
 )
+
+# VideoProcessor uses imageio_ffmpeg (optional dependency).
+# Import lazily so the rest of the package is usable without it.
+def _get_video_processor():
+    """Lazy import VideoProcessor (requires imageio_ffmpeg)."""
+    from src.video_processor import VideoProcessor, processed_video_path  # noqa: F401
+    return VideoProcessor, processed_video_path
+
+try:
+    from src.video_processor import VideoProcessor, processed_video_path
+except ImportError:
+    # imageio_ffmpeg not installed — video processing unavailable
+    VideoProcessor = None          # type: ignore[assignment,misc]
+    processed_video_path = None    # type: ignore[assignment]
 
 __all__ = [
     # Config

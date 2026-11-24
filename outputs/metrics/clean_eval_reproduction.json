@@ -530,7 +530,7 @@
       "pixel_accuracy": 0.9430600568374847,
       "evaluated_classes_count": 11,
       "total_pixels_evaluated": 1854410,
-      "latency_ms": 585.39,
+      "latency_ms": 1871.45,
       "per_class_iou": {
         "road": 96.84,
         "sidewalk": 85.68,
@@ -552,7 +552,7 @@
       "pixel_accuracy": 0.9616051785071791,
       "evaluated_classes_count": 12,
       "total_pixels_evaluated": 1864939,
-      "latency_ms": 501.23,
+      "latency_ms": 1767.22,
       "per_class_iou": {
         "road": 98.51,
         "sidewalk": 90.81,
@@ -575,7 +575,7 @@
       "pixel_accuracy": 0.9291777546087661,
       "evaluated_classes_count": 12,
       "total_pixels_evaluated": 1868396,
-      "latency_ms": 473.39,
+      "latency_ms": 1452.37,
       "per_class_iou": {
         "road": 94.41,
         "sidewalk": 46.1,
@@ -598,7 +598,7 @@
       "pixel_accuracy": 0.9367208777021352,
       "evaluated_classes_count": 16,
       "total_pixels_evaluated": 1846549,
-      "latency_ms": 457.85,
+      "latency_ms": 1482.32,
       "per_class_iou": {
         "road": 96.36,
         "sidewalk": 20.95,
@@ -625,7 +625,7 @@
       "pixel_accuracy": 0.9540173070776513,
       "evaluated_classes_count": 15,
       "total_pixels_evaluated": 1683242,
-      "latency_ms": 476.65,
+      "latency_ms": 1486.89,
       "per_class_iou": {
         "road": 97.28,
         "sidewalk": 55.68,
