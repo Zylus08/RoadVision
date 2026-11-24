@@ -1,0 +1,43 @@
+{
+  "audit_timestamp": "2026-11-24T21:32:00+05:30",
+  "hardware": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "architecture": "AMD64",
+    "processor": "Intel / AMD x86_64",
+    "physical_gpu_detected": true,
+    "physical_gpu_description": "NVIDIA GeForce RTX 3050 Laptop GPU (4 GB VRAM)",
+    "cuda_available_in_torch": false,
+    "cuda_version_in_torch": null,
+    "execution_device_used": "cpu",
+    "hardware_triage_note": "PyTorch was installed as 2.15.0+cpu binary in Conda environment 'reswork'. System fallback to CPU is verified, functional, and deterministic."
+  },
+  "python_environment": {
+    "executable": "C:\\Users\\mishr\\anaconda3\\envs\\reswork\\python.exe",
+    "version": "3.14.2 | packaged by conda-forge | (main, Jan 26 2026, 19:49:55) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "package_versions": {
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.20.0 (compatible with torch 2.x)",
+    "transformers": "4.57.6",
+    "numpy": "2.4.2",
+    "opencv-python": "5.0.0",
+    "pillow": "12.1.0",
+    "streamlit": "1.56.0",
+    "imageio": "2.37.0",
+    "imageio-ffmpeg": "0.8.1",
+    "ffmpeg_executable": "C:\\Users\\mishr\\anaconda3\\envs\\reswork\\Lib\\site-packages\\imageio_ffmpeg\\binaries\\ffmpeg-win-x86_64-v9.0.2.exe",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8",
+    "pyyaml": "6.0.2",
+    "pytest": "9.2.0"
+  },
+  "environment_health": {
+    "pip_check_status": "PASS (No broken requirements)",
+    "py_compile_status": "PASS (All modules compile cleanly)",
+    "cache_redirection": {
+      "hf_home": "E:\\RoadVision\\.cache\\huggingface",
+      "torch_home": "E:\\RoadVision\\.cache\\torch",
+      "drive_status": "Configured to prevent C: drive exhaustion"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "project_name": "RoadVision",
+  "audit_timestamp": "2026-11-24T21:32:00+05:30",
+  "git": {
+    "remote": "https://github.com/Zylus08/RoadVision.git",
+    "branch": "audit/roadvision-full-health-certification",
+    "base_commit": "81be5e2d0314e6d0de008863ff961d95cc3475c1",
+    "author": "Abhay Kumar / Saksham Mishra",
+    "clean_working_tree": true
+  },
+  "inventory": {
+    "python_source_files": [
+      "app.py",
+      "src/__init__.py",
+      "src/config.py",
+      "src/constants.py",
+      "src/corruptions.py",
+      "src/dataset.py",
+      "src/inference.py",
+      "src/metrics.py",
+      "src/video_processor.py",
+      "src/visualization.py"
+    ],
+    "scripts": [
+      "scripts/audit_hardware.py",
+      "scripts/audit_robustness_integrity.py",
+      "scripts/create_sample_video.py",
+      "scripts/diagnose_miou.py",
+      "scripts/evaluate.py",
+      "scripts/generate_audit_visualizations.py",
+      "scripts/prepare_authentic_dataset.py",
+      "scripts/prepare_dataset.py",
+      "scripts/reproduce_clean_eval.py",
+      "scripts/robustness_test.py",
+      "scripts/run_inference.py",
+      "scripts/run_verified_robustness_benchmark.py",
+      "scripts/smoke_test_deliverables.py",
+      "scripts/test_download_model.py",
+      "scripts/test_torchvision_model.py",
+      "scripts/verify_dataset_provenance.py"
+    ],
+    "test_files": [
+      "tests/__init__.py",
+      "tests/test_audit_regression.py",
+      "tests/test_corruptions.py",
+      "tests/test_image_display.py",
+      "tests/test_inference.py",
+      "tests/test_metrics.py",
+      "tests/test_video_processor.py"
+    ],
+    "documentation": [
+      "README.md",
+      "docs/audit_report.md",
+      "docs/methodology.md",
+      "docs/results.md",
+      "docs/viva_preparation.md"
+    ],
+    "configuration": [
+      "configs/default_config.yaml",
+      "requirements.txt",
+      ".gitignore"
+    ],
+    "datasets": {
+      "authentic_validation_samples": [
+        "data/samples/authentic/frankfurt_000000_000294.png",
+        "data/samples/authentic/frankfurt_000000_000576.png",
+        "data/samples/authentic/frankfurt_000000_001016.png",
+        "data/samples/authentic/frankfurt_000000_001236.png",
+        "data/samples/authentic/frankfurt_000000_001751.png"
+      ],
+      "authentic_validation_labels": [
+        "data/labels/authentic/frankfurt_000000_000294_label.png",
+        "data/labels/authentic/frankfurt_000000_000576_label.png",
+        "data/labels/authentic/frankfurt_000000_001016_label.png",
+        "data/labels/authentic/frankfurt_000000_001236_label.png",
+        "data/labels/authentic/frankfurt_000000_001751_label.png"
+      ]
+    }
+  }
+}

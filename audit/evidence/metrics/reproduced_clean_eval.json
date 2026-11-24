@@ -1,0 +1,55 @@
+{
+  "reproduced_aggregate_mIoU": 0.5511307209881963,
+  "reproduced_pixel_accuracy": 0.9661737557164567,
+  "evaluated_classes_count": 16,
+  "total_pixels_evaluated": 9117536,
+  "per_image_results": [
+    {
+      "scene": "frankfurt_000000_000294",
+      "mIoU": 0.7203795773498275,
+      "pixel_accuracy": 0.9677935300176337
+    },
+    {
+      "scene": "frankfurt_000000_000576",
+      "mIoU": 0.6328370233199739,
+      "pixel_accuracy": 0.9736409609107858
+    },
+    {
+      "scene": "frankfurt_000000_001016",
+      "mIoU": 0.60844163005558,
+      "pixel_accuracy": 0.9681223894720391
+    },
+    {
+      "scene": "frankfurt_000000_001236",
+      "mIoU": 0.4978380982684693,
+      "pixel_accuracy": 0.9529489875437911
+    },
+    {
+      "scene": "frankfurt_000000_001751",
+      "mIoU": 0.46650839493758234,
+      "pixel_accuracy": 0.9684608630250433
+    }
+  ],
+  "image_level_mean_mIoU": 0.5852009447862866,
+  "per_class_iou": {
+    "road": 0.9788750261575175,
+    "sidewalk": 0.8028819391366296,
+    "building": 0.9460012808249522,
+    "wall": 0.0,
+    "fence": 0.47775533756491634,
+    "pole": 0.318365731809863,
+    "traffic light": 0.4612015018773467,
+    "traffic sign": 0.5966373350094281,
+    "vegetation": 0.9302742786826852,
+    "terrain": 0.0,
+    "sky": 0.9651730356655798,
+    "person": 0.5371802689431625,
+    "rider": 0.43379626720291586,
+    "car": 0.9410660377905123,
+    "truck": 0.0,
+    "bus": null,
+    "train": null,
+    "motorcycle": null,
+    "bicycle": 0.42888349514563107
+  }
+}
